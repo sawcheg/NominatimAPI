@@ -11,6 +11,9 @@ on:
 
 jobs:
   build:
+    env:
+      BUILD_CONFIG: 'Release'
+      SOLUTION: './src/NominatimAPI.sln'
 
     runs-on: ubuntu-latest
 
@@ -21,8 +24,8 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore ./src/NominatimAPI.sln
+      run: dotnet restore $SOLUTION
     - name: Build
-      run: dotnet build --no-restore ./src/NominatimAPI.sln
+      run: dotnet build $SOLUTION --configuration $BUILD_CONFIG --no-restore
     - name: Test
-      run: dotnet test ./src/NominatimAPI.sln --no-build --verbosity normal
+      run: dotnet test $SOLUTION /p:Configuration=$env:BUILD_CONFIG --no-restore --no-build --verbosity normal
