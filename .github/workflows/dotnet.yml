@@ -28,4 +28,4 @@ jobs:
     - name: Build
       run: dotnet build $SOLUTION --configuration $BUILD_CONFIG --no-restore
     - name: Test
-      run: dotnet test $SOLUTION --no-restore --no-build --verbosity normal
+      run: dotnet test $SOLUTION --no-restore --configuration $BUILD_CONFIG --verbosity normal
