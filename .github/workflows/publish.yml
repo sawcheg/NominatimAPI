@@ -51,4 +51,4 @@ jobs:
       
     - name: Publish
       if: startsWith(github.ref, 'refs/heads/release')
-      run: nuget push .src/NominatimAPI/bin/$BUILD_CONFIG/$DLL_NAME$BUILD_VERSION.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}
+      run: nuget push ./src/NominatimAPI/bin/$BUILD_CONFIG/$DLL_NAME$BUILD_VERSION.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}
