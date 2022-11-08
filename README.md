@@ -5,14 +5,14 @@ Reworked project (Nominatim.API dll) for custom functions.
 \
 **How to use**
 
-To register this service you need to add the following using statement and call to `AddNoninatimServices` and 'AddHttpClient' in your applications `Program.cs` file.
+To register this service you need to add the following using statement and call to `AddNominatimServices` and 'AddHttpClient' in your applications `Program.cs` file.
 
 ```csharp
 using NoninatimAPI;
 ```
 ```csharp
 builder.Services.AddHttpClient();
-builder.Services.AddNoninatimServices();
+builder.Services.AddNominatimServices();
 ```
 
 The code surface is very simple - use the `INominatimWebInterface` interface, here are the available methods:
