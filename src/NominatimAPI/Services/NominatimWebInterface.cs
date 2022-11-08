@@ -10,14 +10,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using NominatimAPI.Contracts;
 using NominatimAPI.Interfaces;
-using NominatimAPI.Models;
 
-namespace NominatimAPI.Web
+namespace NominatimAPI.Services
 {
     /// <summary>
     ///     Provides a means of sending HTTP requests to a Nominatim server
     /// </summary>
-    public class NominatimWebInterface : INominatimWebInterface {
+    internal class NominatimWebInterface : INominatimWebInterface
+    {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IServiceProvider _serviceProvider;
 
@@ -42,26 +42,30 @@ namespace NominatimAPI.Web
         /// <param name="url">URL of Nominatim server method</param>
         /// <param name="parameters">Query string parameters</param>
         /// <returns>Deserialized instance of T</returns>
-        public async Task<T> GetRequest<T>(string url, Dictionary<string, string> parameters) {
-            var req = addQueryStringToUrl(url, parameters);
+        public async Task<T> GetRequest<T>(string url, Dictionary<string, string> parameters)
+        {
+            var req = AddQueryStringToUrl(url, parameters);
 
             var httpClient = _httpClientFactory.CreateClient();
             AddUserAgent(httpClient);
             var result = await httpClient.GetStringAsync(req).ConfigureAwait(false);
-            var settings = new JsonSerializerSettings {ContractResolver = new PrivateContractResolver()};
+            var settings = new JsonSerializerSettings { ContractResolver = new PrivateContractResolver() };
 
             return JsonConvert.DeserializeObject<T>(result, settings);
         }
 
-        private static string addQueryStringToUrl(string url, IDictionary<string, string> parameters) {
-            if ((parameters?.Keys.Count ?? 0) == 0) {
+        private static string AddQueryStringToUrl(string url, IDictionary<string, string> parameters)
+        {
+            if ((parameters?.Keys.Count ?? 0) == 0)
+            {
                 return url;
             }
 
             var op = url.IndexOf('?') != -1;
             var sb = new StringBuilder();
             sb.Append(url);
-            foreach (var kvp in parameters) {
+            foreach (var kvp in parameters)
+            {
                 sb.Append(op ? '&' : '?');
                 sb.Append($"{UrlEncoder.Default.Encode(kvp.Key)}={UrlEncoder.Default.Encode(kvp.Value)}");
                 op = true;
@@ -70,13 +74,14 @@ namespace NominatimAPI.Web
             return sb.ToString();
         }
 
-        private static void AddUserAgent(HttpClient httpClient) {
+        private static void AddUserAgent(HttpClient httpClient)
+        {
             httpClient.DefaultRequestHeaders.UserAgent.Clear();
-            httpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("f1ana.NominatimAPI", Assembly.GetExecutingAssembly().GetName().Version.ToString()));
+            httpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("NominatimAPI", Assembly.GetExecutingAssembly().GetName().Version.ToString()));
         }
 
         public Task<AddressLookupResponse[]> Lookup(AddressSearchRequest req)
-            => _serviceProvider.GetRequiredService<IAddressSearcher>().Lookup(req);        
+            => _serviceProvider.GetRequiredService<IAddressSearcher>().Lookup(req);
 
         public Task<GeocodeResponse> ReverseGeocode(ReverseGeocodeRequest req)
             => _serviceProvider.GetRequiredService<IReverseGeocoder>().ReverseGeocode(req);

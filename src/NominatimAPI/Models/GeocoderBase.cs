@@ -1,8 +1,6 @@
-﻿using NominatimAPI.Models;
-
-namespace NominatimAPI.Geocoders
+﻿namespace NominatimAPI.Models
 {
-    public abstract class GeocoderBase: BaseUrlService
+    internal abstract class GeocoderBase : BaseUrlService
     {
         /// <summary>
         ///     Constructor

@@ -1,8 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using NominatimAPI.Address;
-using NominatimAPI.Geocoders;
 using NominatimAPI.Interfaces;
-using NominatimAPI.Web;
+using NominatimAPI.Services;
 using System.Net.Http;
 
 namespace NominatimAPI

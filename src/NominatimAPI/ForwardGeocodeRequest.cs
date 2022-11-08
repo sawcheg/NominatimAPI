@@ -1,5 +1,9 @@
-﻿namespace NominatimAPI.Models {
-    public class ForwardGeocodeRequest : BaseNominatimRequest {
+﻿using NominatimAPI.Models;
+
+namespace NominatimAPI
+{
+    public class ForwardGeocodeRequest : BaseNominatimRequest
+    {
         /// <summary>
         ///     Query string to search for.  Do not combine with any address fields.
         /// </summary>

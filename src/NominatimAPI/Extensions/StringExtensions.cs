@@ -1,7 +1,7 @@
 ﻿namespace NominatimAPI.Extensions {
-    public static class StringExtensions {
-        internal static bool hasValue(this string str) {
-            return !string.IsNullOrEmpty(str);
+    internal static class StringExtensions {
+        internal static bool HasValue(this string str) {
+            return !string.IsNullOrWhiteSpace(str);
         }
     }
 }

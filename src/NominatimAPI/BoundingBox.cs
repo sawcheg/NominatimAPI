@@ -1,5 +1,7 @@
-﻿namespace NominatimAPI.Models {
-    public struct BoundingBox {
+﻿namespace NominatimAPI
+{
+    public struct BoundingBox
+    {
         public double minLatitude;
         public double minLongitude;
         public double maxLatitude;

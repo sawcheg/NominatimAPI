@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using NominatimAPI.Models;
 
-namespace NominatimAPI.Interfaces {
+namespace NominatimAPI.Interfaces
+{
     public interface IReverseGeocoder {
         /// <summary>
         ///     Attempt to get an address or location from a set of coordinates

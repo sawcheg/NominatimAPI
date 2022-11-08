@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using NominatimAPI.Models;
 
-namespace NominatimAPI.Interfaces {
+namespace NominatimAPI.Interfaces
+{
     public interface IForwardGeocoder {
         /// <summary>
         ///     Attempt to get coordinates for a specified query or address.

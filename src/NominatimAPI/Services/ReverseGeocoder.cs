@@ -5,12 +5,13 @@ using NominatimAPI.Extensions;
 using NominatimAPI.Interfaces;
 using NominatimAPI.Models;
 
-namespace NominatimAPI.Geocoders
+namespace NominatimAPI.Services
 {
     /// <summary>
     ///     Class to enable reverse geocoding (e.g. latitude and longitude to address)
     /// </summary>
-    public class ReverseGeocoder : GeocoderBase, IReverseGeocoder {
+    internal class ReverseGeocoder : GeocoderBase, IReverseGeocoder
+    {
 
         /// <summary>
         ///     Constructor
@@ -25,18 +26,18 @@ namespace NominatimAPI.Geocoders
         /// </summary>
         /// <param name="req">Reverse geocode request object</param>
         /// <returns>A single reverse geocode response</returns>
-        public async Task<GeocodeResponse> ReverseGeocode(ReverseGeocodeRequest req) {
-            var result = await NominatimWeb.GetRequest<GeocodeResponse>(GetRequestUrl(), buildQueryString(req)).ConfigureAwait(false);
+        public async Task<GeocodeResponse> ReverseGeocode(ReverseGeocodeRequest req)
+        {
+            var result = await NominatimWeb.GetRequest<GeocodeResponse>(GetRequestUrl(), BuildQueryString(req)).ConfigureAwait(false);
             return result;
         }
 
-        private Dictionary<string, string> buildQueryString(ReverseGeocodeRequest r) {
+        private Dictionary<string, string> BuildQueryString(ReverseGeocodeRequest r)
+        {
             var c = new Dictionary<string, string>();
-
             // We only support JSON
             c.AddIfSet("format", format);
             c.AddIfSet("key", Key);
-
             c.AddIfSet("lat", r.Latitude?.ToString(CultureInfo.InvariantCulture.NumberFormat));
             c.AddIfSet("lon", r.Longitude?.ToString(CultureInfo.InvariantCulture.NumberFormat));
             c.AddIfSet("zoom", r.ZoomLevel);
@@ -49,7 +50,6 @@ namespace NominatimAPI.Geocoders
             c.AddIfSet("polygon_svg", r.ShowSVG);
             c.AddIfSet("polygon_text", r.ShowPolygonText);
             c.AddIfSet("extratags", r.ShowExtraTags);
-
             return c;
         }
     }

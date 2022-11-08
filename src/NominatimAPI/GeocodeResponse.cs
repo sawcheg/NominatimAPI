@@ -1,24 +1,31 @@
 ﻿using GeoJSON.Net.Converters;
 using Newtonsoft.Json;
+using NominatimAPI.Models;
 
-namespace NominatimAPI.Models {
-    public class GeocodeResponse : BaseNominatimResponse {
+namespace NominatimAPI
+{
+    public class GeocodeResponse : BaseNominatimResponse
+    {
         [JsonProperty("boundingbox")]
-        private double[] bbox { get; set; }
+        private double[] Bbox { get; set; }
 
         /// <summary>
         ///     Bounding box coordinates where this element is located.
         /// </summary>
-        public BoundingBox? BoundingBox {
-            get {
-                if (bbox == null || bbox.Length != 4) {
+        public BoundingBox? BoundingBox
+        {
+            get
+            {
+                if (Bbox == null || Bbox.Length != 4)
+                {
                     return null;
                 }
-                return new BoundingBox {
-                    minLatitude = bbox[0],
-                    maxLatitude = bbox[1],
-                    minLongitude = bbox[2],
-                    maxLongitude = bbox[3]
+                return new BoundingBox
+                {
+                    minLatitude = Bbox[0],
+                    maxLatitude = Bbox[1],
+                    minLongitude = Bbox[2],
+                    maxLongitude = Bbox[3]
                 };
             }
         }

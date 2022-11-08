@@ -17,6 +17,6 @@ namespace NominatimAPI
         /// API Key, if you are using an Nominatim service that requires one.
         /// </summary>
         string ApiKey { get; set; }
-        Task<T> GetRequest<T>(string url, Dictionary<string, string> parameters);
+        internal Task<T> GetRequest<T>(string url, Dictionary<string, string> parameters);
     }
 }

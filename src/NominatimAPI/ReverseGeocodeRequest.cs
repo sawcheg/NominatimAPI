@@ -1,5 +1,9 @@
-﻿namespace NominatimAPI.Models {
-    public class ReverseGeocodeRequest : BaseNominatimRequest {
+﻿using NominatimAPI.Models;
+
+namespace NominatimAPI
+{
+    public class ReverseGeocodeRequest : BaseNominatimRequest
+    {
         /// <summary>
         ///     Latitude of the location to generate an address for.
         /// </summary>

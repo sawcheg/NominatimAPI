@@ -3,7 +3,7 @@
     /// <summary>
     /// Base class for all Nominatim services with Url-request
     /// </summary>
-    public abstract class BaseUrlService
+    internal abstract class BaseUrlService
     {
         /// <summary>
         ///     Constructor
