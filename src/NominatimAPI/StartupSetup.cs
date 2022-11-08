@@ -18,11 +18,11 @@ namespace NominatimAPI
             string baseUrl = DefaultBaseUrl,
             string apiKey = null)
         {
-            services.AddScoped<INominatimWebInterface, NominatimWebInterface>(s
+            services.AddSingleton<INominatimWebInterface, NominatimWebInterface>(s
                  => new NominatimWebInterface(s.GetRequiredService<IHttpClientFactory>(), s, baseUrl, apiKey));
-            services.AddScoped<IAddressSearcher, AddressSearcher>();
-            services.AddScoped<IReverseGeocoder, ReverseGeocoder>();
-            services.AddScoped<IForwardGeocoder, ForwardGeocoder>();
+            services.AddSingleton<IAddressSearcher, AddressSearcher>();
+            services.AddSingleton<IReverseGeocoder, ReverseGeocoder>();
+            services.AddSingleton<IForwardGeocoder, ForwardGeocoder>();
         }
     }
 }
