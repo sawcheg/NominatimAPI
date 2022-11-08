@@ -16,6 +16,7 @@ jobs:
 
     env:
       BUILD_CONFIG: 'Release'
+      DLL_NAME: 'NominatimAPI'
       SOLUTION: './src/NominatimAPI.sln'
 
     runs-on: ubuntu-latest
@@ -50,4 +51,4 @@ jobs:
       
     - name: Publish
       if: startsWith(github.ref, 'refs/heads/release')
-      run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}
+      run: nuget push **\$DLL_NAME$BUILD_VERSION.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}
