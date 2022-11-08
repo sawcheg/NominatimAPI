@@ -14,7 +14,7 @@ namespace NominatimAPI
         /// <param name="services"></param>
         /// <param name="baseUrl"></param>
         /// <param name="apiKey"></param>
-        public static void AddNoninatimServices(this IServiceCollection services,
+        public static void AddNominatimServices(this IServiceCollection services,
             string baseUrl = DefaultBaseUrl,
             string apiKey = null)
         {

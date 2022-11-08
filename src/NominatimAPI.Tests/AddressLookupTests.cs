@@ -14,7 +14,7 @@ namespace NominatimAPI.Tests
         public void Setup()
         {
             var serviceCollection = new ServiceCollection();
-            serviceCollection.AddNoninatimServices();
+            serviceCollection.AddNominatimServices();
             serviceCollection.AddHttpClient();
             _serviceProvider = serviceCollection.BuildServiceProvider();
         }
@@ -30,10 +30,10 @@ namespace NominatimAPI.Tests
                 ShowAlternativeNames = true,
                 ShowExtraTags = true
             });
-            Assert.IsTrue(result.Length == 3);
-            Assert.IsTrue(result[0].PlaceID == 298269405);
-            Assert.IsTrue(result[1].DisplayName.Contains("Berlin"));
-            Assert.IsTrue(result[2].OSMType == "way");
+            Assert.IsTrue(result.Length == 3, "Wrong result count - {0}!={1}", new object[] { result?.Length, 3 });
+            Assert.IsTrue(result[0].PlaceID == 298269405, "Wrong PlaceID - {0}!={1}", new object[] { result[0]?.PlaceID, 298269405 });
+            Assert.IsTrue(result[1].DisplayName.Contains("Berlin"), "Wrong result 2 - '{1}' not found in '{0}'", new object[] { result[1].DisplayName, "Berlin" });
+            Assert.IsTrue(result[2].OSMType == "way", "Wrong OSMType in result 3 - {0}!={1}", new object[] { result[2].OSMType, "way" });
         }
     }
 }

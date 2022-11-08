@@ -11,7 +11,7 @@ namespace NominatimAPI.Tests
         [SetUp]
         public void Setup() {
             var serviceCollection = new ServiceCollection();
-            serviceCollection.AddNoninatimServices();
+            serviceCollection.AddNominatimServices();
             serviceCollection.AddHttpClient();
             _serviceProvider = serviceCollection.BuildServiceProvider();
         }
