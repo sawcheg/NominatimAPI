@@ -10,7 +10,7 @@
     <RepositoryUrl>https://github.com/sawcheg/NominatimAPI</RepositoryUrl>
     <PackageTags>nominatim, osm, geocode, geocoding</PackageTags>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <TargetFrameworks>net6.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>
